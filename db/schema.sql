@@ -39,9 +39,9 @@ CREATE TABLE Account
     OpenDate date              NOT NULL,
     CONSTRAINT PK_Account PRIMARY KEY (ID),
     CONSTRAINT FK_Account_Users FOREIGN KEY (UserID)
-        REFERENCES Users (ID),
+        REFERENCES Users (ID) ON DELETE CASCADE,
     CONSTRAINT FK_Account_Branch FOREIGN KEY (BranchID)
-        REFERENCES Branch (ID),
+        REFERENCES Branch (ID) ON DELETE CASCADE,
     CONSTRAINT UQ_Account_Number UNIQUE (Number),
     CONSTRAINT CK_Account_Number CHECK (LEN(Number) = 20 AND Number NOT LIKE '%[^0-9]%'),
     CONSTRAINT CK_Account_Balance CHECK (Balance BETWEEN 0 AND 100000000)
