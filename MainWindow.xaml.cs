@@ -50,5 +50,14 @@ namespace UP01_Prokofev_Bank
             }
             btnBack.Visibility = MainFrame.CanGoBack ? Visibility.Visible : Visibility.Hidden;
         }
+
+        void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите выйти?", "Выход",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                e.Cancel = true;
+            else
+                e.Cancel = false;
+        }
     }
 }
