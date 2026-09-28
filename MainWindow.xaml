@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UP01_Prokofev_Bank"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Прогресс-Банк" Height="650" Width="1000" MinHeight="500" MinWidth="800"
+        Icon="/res/icon.ico"
+        Background="{DynamicResource BackgroundBrush}"
+        FontFamily="{DynamicResource MainFont}"
+        Foreground="{DynamicResource TextBrush}"
+        Loaded="Window_Loaded">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{DynamicResource PanelBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txtTitle" Grid.Column="1" Style="{DynamicResource HeaderTextStyle}"/>
+        </Grid>
+
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+
+        <Grid Grid.Row="2" Background="{DynamicResource PanelBrush}">
+            <TextBlock x:Name="DateTimeNow" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,15,0"/>
+        </Grid>
     </Grid>
 </Window>
