@@ -33,5 +33,22 @@ namespace UP01_Prokofev_Bank
             timer.Tick += (o, t) => { DateTimeNow.Text = DateTime.Now.ToString(); };
             timer.Start();
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.CanGoBack)
+                MainFrame.GoBack();
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            Page page = MainFrame.Content as Page;
+            if (page != null)
+            {
+                txtTitle.Text = page.Title;
+                Title = "Прогресс-Банк: " + page.Title;
+            }
+            btnBack.Visibility = MainFrame.CanGoBack ? Visibility.Visible : Visibility.Hidden;
+        }
     }
 }

@@ -24,10 +24,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Button x:Name="btnBack" Grid.Column="0" Content="Назад" HorizontalAlignment="Left"
+                    ToolTip="Вернуться на предыдущую страницу" Click="btnBack_Click"/>
             <TextBlock x:Name="txtTitle" Grid.Column="1" Style="{DynamicResource HeaderTextStyle}"/>
         </Grid>
 
-        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/AuthPage.xaml"
+               NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated"/>
 
         <Grid Grid.Row="2" Background="{DynamicResource PanelBrush}">
             <TextBlock x:Name="DateTimeNow" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,15,0"/>
