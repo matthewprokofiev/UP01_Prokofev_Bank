@@ -23,6 +23,30 @@ namespace UP01_Prokofev_Bank
         public MainWindow()
         {
             InitializeComponent();
+            ChangeTheme(Properties.Settings.Default.Theme);
+        }
+
+        private void ChangeTheme(string fileName)
+        {
+            // определяем путь к файлу ресурсов
+            var uri = new Uri(fileName, UriKind.Relative);
+            // загружаем словарь ресурсов
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            // очищаем коллекцию ресурсов приложения
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Clear();
+            // добавляем загруженный словарь ресурсов
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+            Properties.Settings.Default.Theme = fileName;
+            Properties.Settings.Default.Save();
+        }
+
+        private void btnTheme_Click(object sender, RoutedEventArgs e)
+        {
+            if (Properties.Settings.Default.Theme == "Dictionary.xaml")
+                ChangeTheme("DarkDictionary.xaml");
+            else
+                ChangeTheme("Dictionary.xaml");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

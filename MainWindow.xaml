@@ -27,6 +27,8 @@
             <Button x:Name="btnBack" Grid.Column="0" Content="Назад" HorizontalAlignment="Left"
                     ToolTip="Вернуться на предыдущую страницу" Click="btnBack_Click"/>
             <TextBlock x:Name="txtTitle" Grid.Column="1" Style="{DynamicResource HeaderTextStyle}"/>
+            <Button x:Name="btnTheme" Grid.Column="2" Content="Сменить тему" HorizontalAlignment="Right"
+                    ToolTip="Переключить светлую и тёмную тему" Click="btnTheme_Click"/>
         </Grid>
 
         <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/AuthPage.xaml"
