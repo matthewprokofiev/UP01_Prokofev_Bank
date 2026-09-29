@@ -91,6 +91,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AuthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="res\icon.ico" />
+    <Resource Include="res\fonts\OpenSans-Regular.ttf" />
+    <Resource Include="res\fonts\OpenSans-SemiBold.ttf" />
+    <Resource Include="res\fonts\OpenSans-Bold.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model1.Context.tt">
