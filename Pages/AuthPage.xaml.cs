@@ -24,5 +24,33 @@ namespace UP01_Prokofev_Bank.Pages
         {
             InitializeComponent();
         }
+
+        private void txtHintLogin_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            TextBoxLogin.Focus();
+        }
+
+        private void txtHintPass_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            PasswordBox.Focus();
+        }
+
+        private void TextBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtHintLogin.Visibility = Visibility.Visible;
+            if (TextBoxLogin.Text.Length > 0)
+            {
+                txtHintLogin.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtHintPass.Visibility = Visibility.Visible;
+            if (PasswordBox.Password.Length > 0)
+            {
+                txtHintPass.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }

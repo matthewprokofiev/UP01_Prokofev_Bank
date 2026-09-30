@@ -9,7 +9,37 @@
       Title="Авторизация"
       FontFamily="{DynamicResource MainFont}"
       Foreground="{DynamicResource TextBrush}">
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <Label x:Name="labelLogin" Grid.Row="0" Grid.Column="0" Content="Логин" VerticalAlignment="Center"/>
+        <TextBox x:Name="TextBoxLogin" Grid.Row="0" Grid.Column="1" Margin="5" MaxLength="50"
+                 ToolTip="Введите логин"
+                 TextChanged="TextBoxLogin_TextChanged"/>
+        <Label x:Name="txtHintLogin" Grid.Row="0" Grid.Column="1" Margin="5" Content="Введите логин"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="txtHintLogin_MouseLeftButtonUp"/>
+
+        <Label x:Name="labelPass" Grid.Row="1" Grid.Column="0" Content="Пароль" VerticalAlignment="Center"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" Margin="5"
+                     ToolTip="Введите пароль"
+                     PasswordChanged="PasswordBox_PasswordChanged"/>
+        <Label x:Name="txtHintPass" Grid.Row="1" Grid.Column="1" Margin="5" Content="Введите пароль"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="txtHintPass_MouseLeftButtonUp"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <Button x:Name="ButtonEnter" Content="Вход" ToolTip="Войти в систему"/>
+            <Button x:Name="ButtonReg" Content="Регистрация" ToolTip="Перейти к регистрации"/>
+            <Button x:Name="ButtonChangePassword" Content="Смена пароля" ToolTip="Перейти к смене пароля"/>
+        </StackPanel>
     </Grid>
 </Page>
