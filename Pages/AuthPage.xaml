@@ -23,7 +23,9 @@
         <Label x:Name="labelLogin" Grid.Row="0" Grid.Column="0" Content="Логин" VerticalAlignment="Center"/>
         <TextBox x:Name="TextBoxLogin" Grid.Row="0" Grid.Column="1" Margin="5" MaxLength="50"
                  ToolTip="Введите логин"
-                 TextChanged="TextBoxLogin_TextChanged"/>
+                 TextChanged="TextBoxLogin_TextChanged"
+                 PreviewTextInput="TextBoxLogin_PreviewTextInput"
+                 PreviewKeyDown="TextBoxLogin_PreviewKeyDown"/>
         <Label x:Name="txtHintLogin" Grid.Row="0" Grid.Column="1" Margin="5" Content="Введите логин"
                Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                MouseLeftButtonUp="txtHintLogin_MouseLeftButtonUp"/>
@@ -41,6 +43,8 @@
                Visibility="Hidden"/>
         <TextBox x:Name="captcha" Grid.Row="0" Grid.Column="1" Margin="5"
                  Style="{DynamicResource CaptchaStyle}"
+                 CommandManager.PreviewExecuted="textBox_PreviewExecuted"
+                 ContextMenu="{x:Null}"
                  IsReadOnly="True"
                  HorizontalContentAlignment="Center"
                  ToolTip="Символы, которые нужно ввести"
@@ -48,6 +52,8 @@
 
         <!-- Поле для ввода -->
         <TextBox x:Name="captchaInput" Grid.Row="1" Grid.Column="1" Margin="5" MaxLength="6"
+                 CommandManager.PreviewExecuted="textBox_PreviewExecuted"
+                 ContextMenu="{x:Null}"
                  ToolTip="Введите символы капчи вручную"
                  TextChanged="captchaInput_TextChanged"
                  Visibility="Hidden"/>

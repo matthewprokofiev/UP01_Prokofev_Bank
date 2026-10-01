@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -147,6 +148,17 @@ namespace UP01_Prokofev_Bank.Pages
             }
         }
 
+        private void TextBoxLogin_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[a-zA-Z0-9@._-]+$");
+        }
+
+        private void TextBoxLogin_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
         public void CaptchaSwitch()
         {
             switch (captcha.Visibility)
@@ -227,6 +239,16 @@ namespace UP01_Prokofev_Bank.Pages
                 ShowMessage("Капча введена успешно, можете продолжить авторизацию", "Успех");
                 CaptchaSwitch();
                 failedAttempts = 0;
+            }
+        }
+
+        private void textBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Copy ||
+                e.Command == ApplicationCommands.Cut ||
+                e.Command == ApplicationCommands.Paste)
+            {
+                e.Handled = true;
             }
         }
     }
