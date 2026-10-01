@@ -37,7 +37,7 @@
                MouseLeftButtonUp="txtHintPass_MouseLeftButtonUp"/>
 
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button x:Name="ButtonEnter" Content="Вход" ToolTip="Войти в систему"/>
+            <Button x:Name="ButtonEnter" Content="Вход" ToolTip="Войти в систему" Click="ButtonEnter_OnClick"/>
             <Button x:Name="ButtonReg" Content="Регистрация" ToolTip="Перейти к регистрации" Click="ButtonReg_Click"/>
             <Button x:Name="ButtonChangePassword" Content="Смена пароля" ToolTip="Перейти к смене пароля"
                     Click="ButtonChangePassword_Click"/>
