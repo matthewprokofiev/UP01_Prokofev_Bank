@@ -36,11 +36,38 @@
                Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                MouseLeftButtonUp="txtHintPass_MouseLeftButtonUp"/>
 
+        <!-- Сам текст капчи -->
+        <Label Content="Капча:" Name="labelCaptcha" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
+               Visibility="Hidden"/>
+        <TextBox x:Name="captcha" Grid.Row="0" Grid.Column="1" Margin="5"
+                 Style="{DynamicResource CaptchaStyle}"
+                 IsReadOnly="True"
+                 HorizontalContentAlignment="Center"
+                 ToolTip="Символы, которые нужно ввести"
+                 Visibility="Hidden"/>
+
+        <!-- Поле для ввода -->
+        <TextBox x:Name="captchaInput" Grid.Row="1" Grid.Column="1" Margin="5" MaxLength="6"
+                 ToolTip="Введите символы капчи вручную"
+                 TextChanged="captchaInput_TextChanged"
+                 Visibility="Hidden"/>
+        <Label x:Name="txtHintCaptcha" Grid.Row="1" Grid.Column="1" Margin="5" Content="Введите капчу"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="txtHintCaptcha_MouseLeftButtonUp"
+               Visibility="Hidden"/>
+
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,10,0,0">
             <Button x:Name="ButtonEnter" Content="Вход" ToolTip="Войти в систему" Click="ButtonEnter_OnClick"/>
             <Button x:Name="ButtonReg" Content="Регистрация" ToolTip="Перейти к регистрации" Click="ButtonReg_Click"/>
             <Button x:Name="ButtonChangePassword" Content="Смена пароля" ToolTip="Перейти к смене пароля"
                     Click="ButtonChangePassword_Click"/>
         </StackPanel>
+
+        <!-- Кнопка подтверждения -->
+        <Button x:Name="submitCaptcha" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,15,5,5"
+                Content="Подтвердить" ToolTip="Подтвердить ввод капчи"
+                Click="submitCaptcha_Click"
+                Visibility="Hidden"/>
     </Grid>
 </Page>

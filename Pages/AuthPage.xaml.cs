@@ -21,6 +21,8 @@ namespace UP01_Prokofev_Bank.Pages
     /// </summary>
     public partial class AuthPage : Page
     {
+        private int failedAttempts = 0;
+
         public AuthPage()
         {
             InitializeComponent();
@@ -49,6 +51,11 @@ namespace UP01_Prokofev_Bank.Pages
             }
         }
 
+        private bool CheckCaptcha()
+        {
+            return captchaInput.Text == captcha.Text;
+        }
+
         private void ButtonEnter_OnClick(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(TextBoxLogin.Text) || string.IsNullOrEmpty(PasswordBox.Password))
@@ -62,6 +69,15 @@ namespace UP01_Prokofev_Bank.Pages
             if (user == null)
             {
                 ShowMessage("Пользователь с такими данными не найден!");
+                failedAttempts++;
+                if (failedAttempts >= 3)
+                {
+                    if (captcha.Visibility != Visibility.Visible)
+                    {
+                        CaptchaSwitch();
+                    }
+                    CaptchaChange();
+                }
                 return;
             }
             else
@@ -99,6 +115,11 @@ namespace UP01_Prokofev_Bank.Pages
             PasswordBox.Focus();
         }
 
+        private void txtHintCaptcha_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            captchaInput.Focus();
+        }
+
         private void TextBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
         {
             txtHintLogin.Visibility = Visibility.Visible;
@@ -114,6 +135,98 @@ namespace UP01_Prokofev_Bank.Pages
             if (PasswordBox.Password.Length > 0)
             {
                 txtHintPass.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void captchaInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtHintCaptcha.Visibility = Visibility.Visible;
+            if (captchaInput.Text.Length > 0)
+            {
+                txtHintCaptcha.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void CaptchaSwitch()
+        {
+            switch (captcha.Visibility)
+            {
+                case Visibility.Visible:
+                    TextBoxLogin.Clear();
+                    PasswordBox.Clear();
+                    captchaInput.Clear();
+
+                    captcha.Visibility = Visibility.Hidden;
+                    captchaInput.Visibility = Visibility.Hidden;
+                    txtHintCaptcha.Visibility = Visibility.Hidden;
+                    labelCaptcha.Visibility = Visibility.Hidden;
+                    submitCaptcha.Visibility = Visibility.Hidden;
+
+                    labelLogin.Visibility = Visibility.Visible;
+                    labelPass.Visibility = Visibility.Visible;
+                    TextBoxLogin.Visibility = Visibility.Visible;
+                    txtHintLogin.Visibility = Visibility.Visible;
+                    PasswordBox.Visibility = Visibility.Visible;
+                    txtHintPass.Visibility = Visibility.Visible;
+
+                    ButtonChangePassword.Visibility = Visibility.Visible;
+                    ButtonEnter.Visibility = Visibility.Visible;
+                    ButtonReg.Visibility = Visibility.Visible;
+                    return;
+
+                case Visibility.Hidden:
+                    captcha.Visibility = Visibility.Visible;
+                    captchaInput.Visibility = Visibility.Visible;
+                    txtHintCaptcha.Visibility = Visibility.Visible;
+                    labelCaptcha.Visibility = Visibility.Visible;
+                    submitCaptcha.Visibility = Visibility.Visible;
+
+                    labelLogin.Visibility = Visibility.Hidden;
+                    labelPass.Visibility = Visibility.Hidden;
+                    TextBoxLogin.Visibility = Visibility.Hidden;
+                    txtHintLogin.Visibility = Visibility.Hidden;
+                    PasswordBox.Visibility = Visibility.Hidden;
+                    txtHintPass.Visibility = Visibility.Hidden;
+
+                    ButtonChangePassword.Visibility = Visibility.Hidden;
+                    ButtonEnter.Visibility = Visibility.Hidden;
+                    ButtonReg.Visibility = Visibility.Hidden;
+                    return;
+            }
+        }
+
+        public void CaptchaChange()
+        {
+            String allowchar = " ";
+            allowchar = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,";
+            allowchar += "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,";
+            allowchar += "1,2,3,4,5,6,7,8,9,0";
+            char[] a = { ',' };
+            String[] ar = allowchar.Split(a);
+            String pwd = "";
+            string temp = "";
+            Random r = new Random();
+
+            for (int i = 0; i < 6; i++)
+            {
+                temp = ar[(r.Next(0, ar.Length))];
+                pwd += temp;
+            }
+            captcha.Text = pwd;
+        }
+
+        private void submitCaptcha_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CheckCaptcha())
+            {
+                ShowMessage("Неверно введена капча", "Ошибка");
+                CaptchaChange();
+            }
+            else
+            {
+                ShowMessage("Капча введена успешно, можете продолжить авторизацию", "Успех");
+                CaptchaSwitch();
+                failedAttempts = 0;
             }
         }
     }
