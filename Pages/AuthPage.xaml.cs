@@ -25,6 +25,16 @@ namespace UP01_Prokofev_Bank.Pages
             InitializeComponent();
         }
 
+        private void ButtonReg_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new RegPage());
+        }
+
+        private void ButtonChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new ChangePassPage());
+        }
+
         private void txtHintLogin_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             TextBoxLogin.Focus();
