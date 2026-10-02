@@ -9,7 +9,59 @@
       Title="Регистрация"
       FontFamily="{DynamicResource MainFont}"
       Foreground="{DynamicResource TextBrush}">
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <Label Grid.Row="0" Grid.Column="0" Content="Введите логин" VerticalAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Введите пароль" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Подтвердите пароль" VerticalAlignment="Center"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Выберите роль" VerticalAlignment="Center"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Введите ФИО" VerticalAlignment="Center"/>
+
+        <TextBox x:Name="txtbxLog" Grid.Row="0" Grid.Column="1" Margin="5" MaxLength="50"
+                 ToolTip="Введите логин"
+                 TextChanged="txtbxLog_TextChanged"/>
+        <PasswordBox x:Name="passBxFrst" Grid.Row="1" Grid.Column="1" Margin="5"
+                     ToolTip="Введите пароль"
+                     PasswordChanged="passBxFrst_PasswordChanged"/>
+        <PasswordBox x:Name="passBxScnd" Grid.Row="2" Grid.Column="1" Margin="5"
+                     ToolTip="Повторите пароль"
+                     PasswordChanged="passBxScnd_PasswordChanged"/>
+        <ComboBox x:Name="comboBxRole" Grid.Row="3" Grid.Column="1" Margin="5"
+                  ToolTip="Выберите роль">
+            <ComboBoxItem Content="User"/>
+            <ComboBoxItem Content="Admin"/>
+        </ComboBox>
+        <TextBox x:Name="txtbxFIO" Grid.Row="4" Grid.Column="1" Margin="5" MaxLength="100"
+                 ToolTip="Введите ФИО"
+                 TextChanged="txtbxFIO_TextChanged"/>
+
+        <Label x:Name="lblLogHitn" Grid.Row="0" Grid.Column="1" Margin="5" Content="Введите логин"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblLogHitn_MouseLeftButtonUp"/>
+        <Label x:Name="lblPassHitn" Grid.Row="1" Grid.Column="1" Margin="5" Content="Введите пароль"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblPassHitn_MouseLeftButtonUp"/>
+        <Label x:Name="lblPassSecHitn" Grid.Row="2" Grid.Column="1" Margin="5" Content="Повторите пароль"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblPassSecHitn_MouseLeftButtonUp"/>
+        <Label x:Name="lblFioHitn" Grid.Row="4" Grid.Column="1" Margin="5" Content="Введите ФИО"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblFioHitn_MouseLeftButtonUp"/>
+
+        <Button x:Name="regButton" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,15,5,5"
+                HorizontalAlignment="Center" Content="Зарегистрироваться"
+                ToolTip="Сохранить нового пользователя"/>
     </Grid>
 </Page>
