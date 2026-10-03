@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,66 @@ namespace UP01_Prokofev_Bank.Pages
         {
             InitializeComponent();
             comboBxRole.SelectedIndex = 0;
+        }
+
+        public static string GetHash(String password)
+        {
+            using (var hash = SHA1.Create())
+            {
+                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
+            }
+        }
+
+        private void ShowMessage(string text, string caption = "Сообщение")
+        {
+            MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void regButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtbxLog.Text) ||
+                string.IsNullOrWhiteSpace(txtbxFIO.Text) ||
+                string.IsNullOrEmpty(passBxFrst.Password) ||
+                string.IsNullOrEmpty(passBxScnd.Password))
+            {
+                ShowMessage("Заполните все поля!");
+                return;
+            }
+
+            using (var db = new Entities())
+            {
+                var user = db.Users
+                    .AsNoTracking()
+                    .FirstOrDefault(u => u.Login == txtbxLog.Text);
+
+                if (user != null)
+                {
+                    ShowMessage("Пользователь с таким логином уже существует!");
+                    return;
+                }
+
+                if (passBxFrst.Password != passBxScnd.Password)
+                {
+                    ShowMessage("Пароли не совпадают!");
+                    return;
+                }
+
+                Users userObject = new Users
+                {
+                    FIO = txtbxFIO.Text,
+                    Login = txtbxLog.Text,
+                    Password = GetHash(passBxFrst.Password),
+                    Role = comboBxRole.Text
+                };
+                db.Users.Add(userObject);
+                db.SaveChanges();
+                ShowMessage("Пользователь успешно зарегистрирован!");
+                txtbxLog.Clear();
+                passBxFrst.Clear();
+                passBxScnd.Clear();
+                comboBxRole.SelectedIndex = 0;
+                txtbxFIO.Clear();
+            }
         }
 
         private void lblLogHitn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
