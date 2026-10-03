@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -63,6 +64,34 @@ namespace UP01_Prokofev_Bank.Pages
                     return;
                 }
 
+                if (passBxFrst.Password.Length < 6)
+                {
+                    ShowMessage("Пароль слишком короткий, должно быть минимум 6 символов!");
+                    return;
+                }
+
+                bool en = true;
+                bool number = false;
+
+                for (int i = 0; i < passBxFrst.Password.Length; i++)
+                {
+                    if (passBxFrst.Password[i] >= '0' && passBxFrst.Password[i] <= '9')
+                        number = true;
+                    else if (!((passBxFrst.Password[i] >= 'A' && passBxFrst.Password[i] <= 'Z') ||
+                               (passBxFrst.Password[i] >= 'a' && passBxFrst.Password[i] <= 'z')))
+                        en = false;
+                }
+
+                if (!en)
+                {
+                    ShowMessage("Используйте только английскую раскладку!");
+                    return;
+                }
+                if (!number)
+                {
+                    ShowMessage("Добавьте хотя бы одну цифру!");
+                    return;
+                }
                 if (passBxFrst.Password != passBxScnd.Password)
                 {
                     ShowMessage("Пароли не совпадают!");
@@ -141,6 +170,22 @@ namespace UP01_Prokofev_Bank.Pages
             {
                 lblFioHitn.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void txtbxLog_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[a-zA-Z0-9@._-]+$");
+        }
+
+        private void txtbxLog_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void txtbxFIO_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[а-яА-ЯёЁ -]+$");
         }
     }
 }

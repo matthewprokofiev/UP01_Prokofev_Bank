@@ -30,10 +30,12 @@
         <Label Grid.Row="4" Grid.Column="0" Content="Введите ФИО" VerticalAlignment="Center"/>
 
         <TextBox x:Name="txtbxLog" Grid.Row="0" Grid.Column="1" Margin="5" MaxLength="50"
-                 ToolTip="Введите логин"
-                 TextChanged="txtbxLog_TextChanged"/>
+                 ToolTip="Логин: английские буквы, цифры и символы @ . _ -"
+                 TextChanged="txtbxLog_TextChanged"
+                 PreviewTextInput="txtbxLog_PreviewTextInput"
+                 PreviewKeyDown="txtbxLog_PreviewKeyDown"/>
         <PasswordBox x:Name="passBxFrst" Grid.Row="1" Grid.Column="1" Margin="5"
-                     ToolTip="Введите пароль"
+                     ToolTip="Не меньше 6 символов, только английские буквы и цифры, хотя бы одна цифра"
                      PasswordChanged="passBxFrst_PasswordChanged"/>
         <PasswordBox x:Name="passBxScnd" Grid.Row="2" Grid.Column="1" Margin="5"
                      ToolTip="Повторите пароль"
@@ -44,8 +46,9 @@
             <ComboBoxItem Content="Admin"/>
         </ComboBox>
         <TextBox x:Name="txtbxFIO" Grid.Row="4" Grid.Column="1" Margin="5" MaxLength="100"
-                 ToolTip="Введите ФИО"
-                 TextChanged="txtbxFIO_TextChanged"/>
+                 ToolTip="Фамилия, имя и отчество русскими буквами"
+                 TextChanged="txtbxFIO_TextChanged"
+                 PreviewTextInput="txtbxFIO_PreviewTextInput"/>
 
         <Label x:Name="lblLogHitn" Grid.Row="0" Grid.Column="1" Margin="5" Content="Введите логин"
                Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
