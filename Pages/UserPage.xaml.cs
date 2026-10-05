@@ -25,5 +25,82 @@ namespace UP01_Prokofev_Bank.Pages
             InitializeComponent();
             ListUser.ItemsSource = Entities.GetContext().Users.ToList();
         }
+
+        private void ShowMessage(string text, string caption = "Сообщение")
+        {
+            MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void clearFiltersButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            fioFilterTextBox.Text = "";
+            sortComboBox.SelectedIndex = 0;
+            onlyAdminCheckBox.IsChecked = false;
+        }
+
+        private void fioFilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lblFioFilterHint.Visibility = Visibility.Visible;
+            if (fioFilterTextBox.Text.Length > 0)
+            {
+                lblFioFilterHint.Visibility = Visibility.Hidden;
+            }
+            UpdateUsers();
+        }
+
+        private void lblFioFilterHint_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            fioFilterTextBox.Focus();
+        }
+
+        private void sortComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateUsers();
+        }
+
+        private void onlyAdminCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateUsers();
+        }
+
+        private void onlyAdminCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            UpdateUsers();
+        }
+
+        private void UpdateUsers()
+        {
+            if (!IsInitialized)
+            {
+                return;
+            }
+
+            try
+            {
+                List<Users> currentUsers = Entities.GetContext().Users.ToList();
+
+                //Филтрация по фамилии
+                if (!string.IsNullOrWhiteSpace(fioFilterTextBox.Text))
+                {
+                    currentUsers = currentUsers.Where(x =>
+                        x.FIO.ToLower().Contains(fioFilterTextBox.Text.ToLower())).ToList();
+                }
+
+                //Фильтрация по роли
+                if (onlyAdminCheckBox.IsChecked.Value)
+                {
+                    currentUsers = currentUsers.Where(x => x.Role == "Admin").ToList();
+                }
+
+                //Фильтрация по убыванию/возрастанию
+                ListUser.ItemsSource = (sortComboBox.SelectedIndex == 0) ?
+                    currentUsers.OrderBy(x => x.FIO).ToList() :
+                    currentUsers.OrderByDescending(x => x.FIO).ToList();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message, "Ошибка");
+            }
+        }
     }
 }

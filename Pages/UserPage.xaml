@@ -10,7 +10,39 @@
       FontFamily="{DynamicResource MainFont}"
       Foreground="{DynamicResource TextBrush}">
     <Grid>
-        <ListView Name="ListUser"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Введите ФИО для поиска:" Margin="5" VerticalAlignment="Center"/>
+            <Grid Margin="5">
+                <TextBox x:Name="fioFilterTextBox" MaxLength="100"
+                         ToolTip="Введите часть ФИО для поиска"
+                         TextChanged="fioFilterTextBox_TextChanged"/>
+                <Label x:Name="lblFioFilterHint" Content="Поиск по ФИО"
+                       Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       MouseLeftButtonUp="lblFioFilterHint_MouseLeftButtonUp"/>
+            </Grid>
+            <TextBlock Text="Сортировка по ФИО:" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox x:Name="sortComboBox" Margin="5" SelectedIndex="0"
+                      VerticalContentAlignment="Center" VerticalAlignment="Center"
+                      ToolTip="Выберите порядок сортировки"
+                      SelectionChanged="sortComboBox_SelectionChanged">
+                <ComboBoxItem Content="По возрастанию"/>
+                <ComboBoxItem Content="По убыванию"/>
+            </ComboBox>
+            <CheckBox x:Name="onlyAdminCheckBox" IsChecked="False" Content="Только администраторы"
+                      Margin="5" VerticalAlignment="Center" VerticalContentAlignment="Center"
+                      ToolTip="Показать только администраторов"
+                      Checked="onlyAdminCheckBox_Checked" Unchecked="onlyAdminCheckBox_Unchecked"/>
+            <Button x:Name="clearFiltersButton" Content="Очистить фильтр" VerticalAlignment="Center"
+                    ToolTip="Сбросить поиск, сортировку и фильтр"
+                    Click="clearFiltersButton_Click_1"/>
+        </WrapPanel>
+
+        <ListView Name="ListUser" Grid.Row="1"
                   HorizontalContentAlignment="Center"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
