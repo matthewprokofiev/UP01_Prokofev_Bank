@@ -145,6 +145,34 @@
     <Compile Include="Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\UsersTabPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Pages\UsersTabPage.xaml.cs">
+      <DependentUpon>UsersTabPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\BranchTabPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Pages\BranchTabPage.xaml.cs">
+      <DependentUpon>BranchTabPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\AccountTabPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Pages\AccountTabPage.xaml.cs">
+      <DependentUpon>AccountTabPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\DiagrammPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Pages\DiagrammPage.xaml.cs">
+      <DependentUpon>DiagrammPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

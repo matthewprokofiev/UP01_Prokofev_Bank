@@ -9,7 +9,24 @@
       Title="Панель администратора"
       FontFamily="{DynamicResource MainFont}"
       Foreground="{DynamicResource TextBrush}">
-    <Grid>
-
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="BtnTab1" Content="Таблица пользователей" ToolTip="Добавление, изменение и удаление пользователей"
+                    Click="BtnTab1_Click"/>
+            <Button x:Name="BtnTab2" Content="Таблица отделений" ToolTip="Добавление, изменение и удаление отделений"
+                    Click="BtnTab2_Click"/>
+            <Button x:Name="BtnTab3" Content="Таблица счетов" ToolTip="Добавление, изменение и удаление счетов"
+                    Click="BtnTab3_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="BtnTab4" Content="Диаграммы и отчёты" ToolTip="Диаграмма остатков и выгрузка в Word, PDF, Excel"
+                    Click="BtnTab4_Click"/>
+            <Button x:Name="BtnTab5" Content="Просмотр и поиск" ToolTip="Просмотр, поиск, сортировка и фильтрация пользователей"
+                    Click="BtnTab5_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

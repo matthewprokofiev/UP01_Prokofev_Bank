@@ -24,5 +24,30 @@ namespace UP01_Prokofev_Bank.Pages
         {
             InitializeComponent();
         }
+
+        private void BtnTab1_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new UsersTabPage());
+        }
+
+        private void BtnTab2_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new BranchTabPage());
+        }
+
+        private void BtnTab3_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new AccountTabPage());
+        }
+
+        private void BtnTab4_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new DiagrammPage());
+        }
+
+        private void BtnTab5_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new UserPage());
+        }
     }
 }
