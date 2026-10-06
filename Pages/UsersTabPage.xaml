@@ -10,6 +10,21 @@
       FontFamily="{DynamicResource MainFont}"
       Foreground="{DynamicResource TextBrush}">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" x:Name="DataGridUser" Margin="5"
+                  AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="*"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Password}" Width="2*"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="120"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}" Width="2*"/>
+                <DataGridTextColumn Header="Фото" Binding="{Binding Photo}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="1" x:Name="ButtonDel" ToolTip="Удалить выбранные записи" Content="Удалить"
+                HorizontalAlignment="Right" Click="ButtonDel_Click"/>
     </Grid>
 </Page>
