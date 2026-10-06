@@ -41,6 +41,11 @@ namespace UP01_Prokofev_Bank.Pages
             }
         }
 
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new AddUserPage(null));
+        }
+
         private void ButtonDel_Click(object sender, RoutedEventArgs e)
         {
             var usersForRemoving = DataGridUser.SelectedItems.Cast<Users>().ToList();
@@ -64,6 +69,11 @@ namespace UP01_Prokofev_Bank.Pages
                     ShowMessage(ex.Message.ToString(), "Ошибка");
                 }
             }
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.AddUserPage((sender as Button).DataContext as Users));
         }
     }
 }

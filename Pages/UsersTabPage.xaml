@@ -22,8 +22,18 @@
                 <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="120"/>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}" Width="2*"/>
                 <DataGridTextColumn Header="Фото" Binding="{Binding Photo}" Width="*"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ButtonEdit" Content="Редактировать"
+                                    ToolTip="Редактировать данные" Click="ButtonEdit_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Grid.Row="1" x:Name="ButtonAdd" ToolTip="Добавить данные" Content="Добавить"
+                HorizontalAlignment="Left" Click="ButtonAdd_Click"/>
         <Button Grid.Row="1" x:Name="ButtonDel" ToolTip="Удалить выбранные записи" Content="Удалить"
                 HorizontalAlignment="Right" Click="ButtonDel_Click"/>
     </Grid>

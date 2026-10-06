@@ -1,0 +1,70 @@
+﻿<Page x:Class="UP01_Prokofev_Bank.Pages.AddUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:UP01_Prokofev_Bank.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Добавление пользователя"
+      FontFamily="{DynamicResource MainFont}"
+      Foreground="{DynamicResource TextBrush}">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Логин" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Пароль" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Роль" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="ФИО" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Фото (необязательно)" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+
+        <TextBox x:Name="TBLogin" Text="{Binding Login}" Grid.Row="0" Grid.Column="1"
+                 Margin="5" MaxLength="50" ToolTip="Логин: английские буквы, цифры и символы @ . _ -"
+                 TextChanged="TBLogin_TextChanged"
+                 PreviewTextInput="TBLogin_PreviewTextInput" PreviewKeyDown="TBLogin_PreviewKeyDown"/>
+        <TextBox x:Name="TBPass" Text="{Binding Password}" Grid.Row="1" Grid.Column="1"
+                 Margin="5" ToolTip="Не меньше 6 символов, только английские буквы и цифры, хотя бы одна цифра"
+                 TextChanged="TBPass_TextChanged"/>
+        <ComboBox Name="cmbRole" SelectedValuePath="Content" SelectedValue="{Binding Role}" ToolTip="Выберите роль"
+                  Grid.Row="2" Grid.Column="1" Margin="5">
+            <ComboBoxItem Content="Admin"/>
+            <ComboBoxItem Content="User"/>
+        </ComboBox>
+        <TextBox x:Name="TBFio" Text="{Binding FIO}" Grid.Row="3" Grid.Column="1"
+                 Margin="5" MaxLength="100" ToolTip="Фамилия, имя и отчество русскими буквами"
+                 TextChanged="TBFio_TextChanged" PreviewTextInput="TBFio_PreviewTextInput"/>
+        <TextBox x:Name="TBPhoto" Text="{Binding Photo}" Grid.Row="4" Grid.Column="1"
+                 Margin="5" ToolTip="Полный путь к файлу с фото, например C:\Фото\user.png"
+                 TextChanged="TBPhoto_TextChanged"/>
+
+        <Label x:Name="lblLoginHint" Content="Введите логин" Grid.Row="0" Grid.Column="1" Margin="5"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblLoginHint_MouseLeftButtonUp"/>
+        <Label x:Name="lblPassHint" Content="Введите пароль" Grid.Row="1" Grid.Column="1" Margin="5"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblPassHint_MouseLeftButtonUp"/>
+        <Label x:Name="lblFioHint" Content="Введите ФИО" Grid.Row="3" Grid.Column="1" Margin="5"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblFioHint_MouseLeftButtonUp"/>
+        <Label x:Name="lblPhotoHint" Content="Путь к фото" Grid.Row="4" Grid.Column="1" Margin="5"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblPhotoHint_MouseLeftButtonUp"/>
+
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
+                    HorizontalAlignment="Center" Margin="0,15,0,0">
+            <Button x:Name="ButtonSave" Content="Сохранить" ToolTip="Сохранить данные" Click="ButtonSave_Click"/>
+            <Button x:Name="ButtonClean" Content="Очистить" ToolTip="Очистить поля" Click="ButtonClean_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

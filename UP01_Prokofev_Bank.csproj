@@ -166,6 +166,13 @@
     <Compile Include="Pages\AccountTabPage.xaml.cs">
       <DependentUpon>AccountTabPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\AddUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Pages\AddUserPage.xaml.cs">
+      <DependentUpon>AddUserPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\DiagrammPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
