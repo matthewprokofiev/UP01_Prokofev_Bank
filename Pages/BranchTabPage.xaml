@@ -10,6 +10,29 @@
       FontFamily="{DynamicResource MainFont}"
       Foreground="{DynamicResource TextBrush}">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" x:Name="DataGridBranch" Margin="5"
+                  AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="2*"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="150"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ButtonEdit" Content="Редактировать"
+                                    ToolTip="Редактировать данные" Click="ButtonEdit_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="1" x:Name="ButtonAdd" ToolTip="Добавить данные" Content="Добавить"
+                HorizontalAlignment="Left" Click="ButtonAdd_Click"/>
+        <Button Grid.Row="1" x:Name="ButtonDel" ToolTip="Удалить выбранные записи" Content="Удалить"
+                HorizontalAlignment="Right" Click="ButtonDel_Click"/>
     </Grid>
 </Page>

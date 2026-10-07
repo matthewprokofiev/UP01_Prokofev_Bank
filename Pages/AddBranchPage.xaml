@@ -1,0 +1,54 @@
+﻿<Page x:Class="UP01_Prokofev_Bank.Pages.AddBranchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:UP01_Prokofev_Bank.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Добавление отделения"
+      FontFamily="{DynamicResource MainFont}"
+      Foreground="{DynamicResource TextBrush}">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Название отделения" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Адрес" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Телефон" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+
+        <TextBox x:Name="TBBranchName" Text="{Binding Name}" Grid.Row="0" Grid.Column="1"
+                 Margin="5" MaxLength="100" ToolTip="Введите название отделения"
+                 TextChanged="TBBranchName_TextChanged"/>
+        <TextBox x:Name="TBAddress" Text="{Binding Address}" Grid.Row="1" Grid.Column="1"
+                 Margin="5" MaxLength="200" ToolTip="Введите адрес отделения"
+                 TextChanged="TBAddress_TextChanged"/>
+        <TextBox x:Name="TBPhone" Text="{Binding Phone}" Grid.Row="2" Grid.Column="1"
+                 Margin="5" MaxLength="11" ToolTip="Телефон из 11 цифр, например 74951234567"
+                 TextChanged="TBPhone_TextChanged"/>
+
+        <Label x:Name="lblBranchNameHint" Content="Введите название" Grid.Row="0" Grid.Column="1" Margin="5"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblBranchNameHint_MouseLeftButtonUp"/>
+        <Label x:Name="lblAddressHint" Content="Введите адрес" Grid.Row="1" Grid.Column="1" Margin="5"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblAddressHint_MouseLeftButtonUp"/>
+        <Label x:Name="lblPhoneHint" Content="11 цифр" Grid.Row="2" Grid.Column="1" Margin="5"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblPhoneHint_MouseLeftButtonUp"/>
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
+                    HorizontalAlignment="Center" Margin="0,15,0,0">
+            <Button x:Name="ButtonSaveBranch" Content="Сохранить" ToolTip="Сохранить данные" Click="ButtonSaveBranch_Click"/>
+            <Button x:Name="ButtonClean" Content="Очистить" ToolTip="Очистить поля" Click="ButtonClean_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

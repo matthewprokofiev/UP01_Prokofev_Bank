@@ -173,6 +173,13 @@
     <Compile Include="Pages\AddUserPage.xaml.cs">
       <DependentUpon>AddUserPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\AddBranchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Pages\AddBranchPage.xaml.cs">
+      <DependentUpon>AddBranchPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\DiagrammPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -23,6 +23,57 @@ namespace UP01_Prokofev_Bank.Pages
         public BranchTabPage()
         {
             InitializeComponent();
+            DataGridBranch.ItemsSource = Entities.GetContext().Branch.ToList();
+            this.IsVisibleChanged += Page_IsVisibleChanged;
+        }
+
+        private void ShowMessage(string text, string caption = "Сообщение")
+        {
+            MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DataGridBranch.ItemsSource = Entities.GetContext().Branch.ToList();
+            }
+        }
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new AddBranchPage(null));
+        }
+
+        private void ButtonDel_Click(object sender, RoutedEventArgs e)
+        {
+            var branchForRemoving = DataGridBranch.SelectedItems.Cast<Branch>().ToList();
+            if (branchForRemoving.Count == 0)
+            {
+                ShowMessage("Выберите записи для удаления");
+                return;
+            }
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {branchForRemoving.Count()} элементов?",
+                "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Branch.RemoveRange(branchForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    ShowMessage("Данные успешно удалены!");
+                    DataGridBranch.ItemsSource = Entities.GetContext().Branch.ToList();
+                }
+                catch (Exception ex)
+                {
+                    ShowMessage(ex.Message.ToString(), "Ошибка");
+                }
+            }
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.AddBranchPage((sender as Button).DataContext as Branch));
         }
     }
 }
