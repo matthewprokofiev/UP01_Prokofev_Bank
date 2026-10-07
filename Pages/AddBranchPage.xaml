@@ -33,7 +33,8 @@
                  TextChanged="TBAddress_TextChanged"/>
         <TextBox x:Name="TBPhone" Text="{Binding Phone}" Grid.Row="2" Grid.Column="1"
                  Margin="5" MaxLength="11" ToolTip="Телефон из 11 цифр, например 74951234567"
-                 TextChanged="TBPhone_TextChanged"/>
+                 TextChanged="TBPhone_TextChanged"
+                 PreviewTextInput="TBPhone_PreviewTextInput" PreviewKeyDown="TBPhone_PreviewKeyDown"/>
 
         <Label x:Name="lblBranchNameHint" Content="Введите название" Grid.Row="0" Grid.Column="1" Margin="5"
                Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"

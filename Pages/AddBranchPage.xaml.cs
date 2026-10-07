@@ -114,5 +114,16 @@ namespace UP01_Prokofev_Bank.Pages
         {
             TBPhone.Focus();
         }
+
+        private void TBPhone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
+        }
+
+        private void TBPhone_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
     }
 }
