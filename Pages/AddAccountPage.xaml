@@ -1,0 +1,64 @@
+﻿<Page x:Class="UP01_Prokofev_Bank.Pages.AddAccountPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:UP01_Prokofev_Bank.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Добавление счёта"
+      FontFamily="{DynamicResource MainFont}"
+      Foreground="{DynamicResource TextBrush}">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Номер счёта" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Остаток, руб." Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Дата открытия" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Клиент" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Отделение" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+
+        <TextBox x:Name="TBNumber" Text="{Binding Number}" Grid.Row="0" Grid.Column="1"
+                 Margin="5" MaxLength="20" ToolTip="Номер счёта из 20 цифр"
+                 TextChanged="TBNumber_TextChanged"/>
+        <TextBox x:Name="TBBalance" Grid.Row="1" Grid.Column="1"
+                 Margin="5" MaxLength="12" ToolTip="Остаток от 0 до 100 000 000, копейки через запятую"
+                 TextChanged="TBBalance_TextChanged"/>
+        <DatePicker x:Name="DPOpenDate" SelectedDate="{Binding OpenDate}" Grid.Row="2" Grid.Column="1" Margin="5"
+                    ToolTip="Выберите дату открытия счёта">
+            <DatePicker.Resources>
+                <Style TargetType="Button"/>
+            </DatePicker.Resources>
+        </DatePicker>
+        <ComboBox x:Name="CBUser" Grid.Row="3" Grid.Column="1" Margin="5"
+                  DisplayMemberPath="FIO" SelectedValuePath="ID" SelectedValue="{Binding UserID}"
+                  ToolTip="Выберите клиента"/>
+        <ComboBox x:Name="CBBranch" Grid.Row="4" Grid.Column="1" Margin="5"
+                  DisplayMemberPath="Name" SelectedValuePath="ID" SelectedValue="{Binding BranchID}"
+                  ToolTip="Выберите отделение"/>
+
+        <Label x:Name="lblNumberHint" Content="20 цифр" Grid.Row="0" Grid.Column="1" Margin="5"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblNumberHint_MouseLeftButtonUp"/>
+        <Label x:Name="lblBalanceHint" Content="Например, 1500,50" Grid.Row="1" Grid.Column="1" Margin="5"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblBalanceHint_MouseLeftButtonUp"/>
+
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
+                    HorizontalAlignment="Center" Margin="0,15,0,0">
+            <Button x:Name="ButtonSave" Content="Сохранить" ToolTip="Сохранить данные" Click="ButtonSave_Click"/>
+            <Button x:Name="ButtonClean" Content="Очистить" ToolTip="Очистить поля" Click="ButtonClean_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

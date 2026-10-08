@@ -10,6 +10,31 @@
       FontFamily="{DynamicResource MainFont}"
       Foreground="{DynamicResource TextBrush}">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" x:Name="DataGridAccount" Margin="5"
+                  AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер счёта" Binding="{Binding Number}" Width="2*"/>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Users.FIO}" Width="2*"/>
+                <DataGridTextColumn Header="Отделение" Binding="{Binding Branch.Name}" Width="2*"/>
+                <DataGridTextColumn Header="Остаток" Binding="{Binding Balance, StringFormat=N2}" Width="*"/>
+                <DataGridTextColumn Header="Дата открытия" Binding="{Binding OpenDate, StringFormat=dd.MM.yyyy}" Width="*"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ButtonEdit" Content="Редактировать"
+                                    ToolTip="Редактировать данные" Click="ButtonEdit_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="1" x:Name="ButtonAdd" ToolTip="Добавить данные" Content="Добавить"
+                HorizontalAlignment="Left" Click="ButtonAdd_Click"/>
+        <Button Grid.Row="1" x:Name="ButtonDel" ToolTip="Удалить выбранные записи" Content="Удалить"
+                HorizontalAlignment="Right" Click="ButtonDel_Click"/>
     </Grid>
 </Page>
