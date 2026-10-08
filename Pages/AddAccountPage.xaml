@@ -31,10 +31,12 @@
 
         <TextBox x:Name="TBNumber" Text="{Binding Number}" Grid.Row="0" Grid.Column="1"
                  Margin="5" MaxLength="20" ToolTip="Номер счёта из 20 цифр"
-                 TextChanged="TBNumber_TextChanged"/>
+                 TextChanged="TBNumber_TextChanged"
+                 PreviewTextInput="TBNumber_PreviewTextInput" PreviewKeyDown="TBNumber_PreviewKeyDown"/>
         <TextBox x:Name="TBBalance" Grid.Row="1" Grid.Column="1"
                  Margin="5" MaxLength="12" ToolTip="Остаток от 0 до 100 000 000, копейки через запятую"
-                 TextChanged="TBBalance_TextChanged"/>
+                 TextChanged="TBBalance_TextChanged"
+                 PreviewTextInput="TBBalance_PreviewTextInput" PreviewKeyDown="TBBalance_PreviewKeyDown"/>
         <DatePicker x:Name="DPOpenDate" SelectedDate="{Binding OpenDate}" Grid.Row="2" Grid.Column="1" Margin="5"
                     ToolTip="Выберите дату открытия счёта">
             <DatePicker.Resources>

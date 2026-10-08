@@ -60,6 +60,10 @@ namespace UP01_Prokofev_Bank.Pages
 
             if (DPOpenDate.SelectedDate == null)
                 errors.AppendLine("Укажите дату открытия!");
+            else if (DPOpenDate.SelectedDate.Value > DateTime.Today)
+                errors.AppendLine("Дата открытия не может быть позже сегодняшней!");
+            else if (DPOpenDate.SelectedDate.Value < new DateTime(2000, 1, 1))
+                errors.AppendLine("Дата открытия не может быть раньше 01.01.2000!");
 
             if (CBUser.SelectedItem == null)
                 errors.AppendLine("Выберите клиента!");
@@ -130,6 +134,28 @@ namespace UP01_Prokofev_Bank.Pages
         private void lblBalanceHint_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             TBBalance.Focus();
+        }
+
+        private void TBNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
+        }
+
+        private void TBNumber_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void TBBalance_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !(Regex.IsMatch(e.Text, "^[0-9]+$") || (e.Text == "," && !TBBalance.Text.Contains(",")));
+        }
+
+        private void TBBalance_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
         }
     }
 }
