@@ -29,11 +29,11 @@
         <TextBlock Text="ФИО" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
         <TextBlock Text="Фото (необязательно)" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
 
-        <TextBox x:Name="TBLogin" Text="{Binding Login}" Grid.Row="0" Grid.Column="1"
+        <TextBox x:Name="TBLogin" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"
                  Margin="5" MaxLength="50" ToolTip="Логин: английские буквы, цифры и символы @ . _ -"
                  TextChanged="TBLogin_TextChanged"
                  PreviewTextInput="TBLogin_PreviewTextInput" PreviewKeyDown="TBLogin_PreviewKeyDown"/>
-        <TextBox x:Name="TBPass" Text="{Binding Password}" Grid.Row="1" Grid.Column="1"
+        <TextBox x:Name="TBPass" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"
                  Margin="5" ToolTip="Не меньше 6 символов, только английские буквы и цифры, хотя бы одна цифра"
                  TextChanged="TBPass_TextChanged"/>
         <ComboBox Name="cmbRole" SelectedValuePath="Content" SelectedValue="{Binding Role}" ToolTip="Выберите роль"
@@ -41,10 +41,10 @@
             <ComboBoxItem Content="Admin"/>
             <ComboBoxItem Content="User"/>
         </ComboBox>
-        <TextBox x:Name="TBFio" Text="{Binding FIO}" Grid.Row="3" Grid.Column="1"
+        <TextBox x:Name="TBFio" Text="{Binding FIO, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1"
                  Margin="5" MaxLength="100" ToolTip="Фамилия, имя и отчество русскими буквами"
                  TextChanged="TBFio_TextChanged" PreviewTextInput="TBFio_PreviewTextInput"/>
-        <TextBox x:Name="TBPhoto" Text="{Binding Photo}" Grid.Row="4" Grid.Column="1"
+        <TextBox x:Name="TBPhoto" Text="{Binding Photo, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1"
                  Margin="5" ToolTip="Полный путь к файлу с фото, например C:\Фото\user.png"
                  TextChanged="TBPhoto_TextChanged"/>
 

@@ -25,13 +25,13 @@
         <TextBlock Text="Адрес" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
         <TextBlock Text="Телефон" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
 
-        <TextBox x:Name="TBBranchName" Text="{Binding Name}" Grid.Row="0" Grid.Column="1"
+        <TextBox x:Name="TBBranchName" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"
                  Margin="5" MaxLength="100" ToolTip="Введите название отделения"
                  TextChanged="TBBranchName_TextChanged"/>
-        <TextBox x:Name="TBAddress" Text="{Binding Address}" Grid.Row="1" Grid.Column="1"
+        <TextBox x:Name="TBAddress" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"
                  Margin="5" MaxLength="200" ToolTip="Введите адрес отделения"
                  TextChanged="TBAddress_TextChanged"/>
-        <TextBox x:Name="TBPhone" Text="{Binding Phone}" Grid.Row="2" Grid.Column="1"
+        <TextBox x:Name="TBPhone" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"
                  Margin="5" MaxLength="11" ToolTip="Телефон из 11 цифр, например 74951234567"
                  TextChanged="TBPhone_TextChanged"
                  PreviewTextInput="TBPhone_PreviewTextInput" PreviewKeyDown="TBPhone_PreviewKeyDown"/>
