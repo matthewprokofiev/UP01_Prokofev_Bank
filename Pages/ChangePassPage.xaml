@@ -9,7 +9,53 @@
       Title="Смена пароля"
       FontFamily="{DynamicResource MainFont}"
       Foreground="{DynamicResource TextBrush}">
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <Label Grid.Row="0" Grid.Column="0" Content="Логин" VerticalAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Текущий пароль" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Новый пароль" VerticalAlignment="Center"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Подтвердите пароль" VerticalAlignment="Center"/>
+
+        <TextBox x:Name="TbLogin" Grid.Row="0" Grid.Column="1" Margin="5" MaxLength="50"
+                 ToolTip="Введите логин"
+                 TextChanged="TbLogin_TextChanged"
+                 PreviewTextInput="TbLogin_PreviewTextInput" PreviewKeyDown="TbLogin_PreviewKeyDown"/>
+        <PasswordBox x:Name="CurrentPasswordBox" Grid.Row="1" Grid.Column="1" Margin="5"
+                     ToolTip="Введите текущий пароль"
+                     PasswordChanged="CurrentPasswordBox_PasswordChanged"/>
+        <PasswordBox x:Name="NewPasswordBox" Grid.Row="2" Grid.Column="1" Margin="5"
+                     ToolTip="Не меньше 6 символов, только английские буквы и цифры, хотя бы одна цифра"
+                     PasswordChanged="NewPasswordBox_PasswordChanged"/>
+        <PasswordBox x:Name="ConfirmPasswordBox" Grid.Row="3" Grid.Column="1" Margin="5"
+                     ToolTip="Повторите новый пароль"
+                     PasswordChanged="ConfirmPasswordBox_PasswordChanged"/>
+
+        <Label x:Name="lblLoginHint" Grid.Row="0" Grid.Column="1" Margin="5" Content="Введите логин"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblLoginHint_MouseLeftButtonUp"/>
+        <Label x:Name="lblCurrentPassHint" Grid.Row="1" Grid.Column="1" Margin="5" Content="Введите текущий пароль"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblCurrentPassHint_MouseLeftButtonUp"/>
+        <Label x:Name="lblNewPassHint" Grid.Row="2" Grid.Column="1" Margin="5" Content="Введите новый пароль"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblNewPassHint_MouseLeftButtonUp"/>
+        <Label x:Name="lblConfirmPassHint" Grid.Row="3" Grid.Column="1" Margin="5" Content="Повторите новый пароль"
+               Style="{DynamicResource HintStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+               MouseLeftButtonUp="lblConfirmPassHint_MouseLeftButtonUp"/>
+
+        <Button x:Name="ButtonSave" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,15,5,5"
+                HorizontalAlignment="Center" Content="Сохранить"
+                ToolTip="Сохранить новый пароль" Click="ButtonSave_Click"/>
     </Grid>
 </Page>
