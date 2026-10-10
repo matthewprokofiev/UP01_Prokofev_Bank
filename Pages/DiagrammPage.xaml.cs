@@ -166,6 +166,7 @@ namespace UP01_Prokofev_Bank.Pages
                 application.Visible = true;
                 string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 document.SaveAs2(System.IO.Path.Combine(folder, "Accounts.docx"));
+                document.SaveAs2(System.IO.Path.Combine(folder, "Accounts.pdf"), Word.WdSaveFormat.wdFormatPDF);
             }
             catch (Exception ex)
             {

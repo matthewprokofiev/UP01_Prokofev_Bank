@@ -23,7 +23,7 @@
             <ComboBox x:Name="CmbDiagram" SelectionChanged="UpdateChart" Margin="5"
                       ToolTip="Выберите тип диаграммы"/>
             <Button x:Name="BtnWord" Content="Экспорт в Word" Click="BtnWord_Click"
-                    ToolTip="Выгрузить отчёт в Word"/>
+                    ToolTip="Выгрузить отчёт в Word и PDF"/>
         </WrapPanel>
         <WindowsFormsHost Grid.Row="1" Margin="5">
             <charts:Chart x:Name="ChartAccounts">
