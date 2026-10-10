@@ -4,12 +4,32 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:UP01_Prokofev_Bank.Pages"
+      xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Диаграммы и отчёты"
       FontFamily="{DynamicResource MainFont}"
       Foreground="{DynamicResource TextBrush}">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" HorizontalAlignment="Center">
+            <TextBlock Text="Клиент:" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox x:Name="CmbUser" DisplayMemberPath="FIO" SelectionChanged="UpdateChart" Margin="5"
+                      ToolTip="Выберите клиента"/>
+            <TextBlock Text="Тип диаграммы:" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox x:Name="CmbDiagram" SelectionChanged="UpdateChart" Margin="5"
+                      ToolTip="Выберите тип диаграммы"/>
+        </WrapPanel>
+        <WindowsFormsHost Grid.Row="1" Margin="5">
+            <charts:Chart x:Name="ChartAccounts">
+                <charts:Chart.Legends>
+                    <charts:Legend>
+                    </charts:Legend>
+                </charts:Chart.Legends>
+            </charts:Chart>
+        </WindowsFormsHost>
     </Grid>
 </Page>
