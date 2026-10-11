@@ -22,6 +22,8 @@
             <TextBlock Text="Тип диаграммы:" Margin="5" VerticalAlignment="Center"/>
             <ComboBox x:Name="CmbDiagram" SelectionChanged="UpdateChart" Margin="5"
                       ToolTip="Выберите тип диаграммы"/>
+            <Button x:Name="BtnExcel" Content="Экспорт в Excel" Click="BtnExcel_Click"
+                    ToolTip="Выгрузить счета клиентов в Excel"/>
             <Button x:Name="BtnWord" Content="Экспорт в Word" Click="BtnWord_Click"
                     ToolTip="Выгрузить отчёт в Word и PDF"/>
         </WrapPanel>

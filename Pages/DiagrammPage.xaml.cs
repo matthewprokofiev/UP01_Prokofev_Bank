@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Word = Microsoft.Office.Interop.Word;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace UP01_Prokofev_Bank.Pages
 {
@@ -167,6 +168,90 @@ namespace UP01_Prokofev_Bank.Pages
                 string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 document.SaveAs2(System.IO.Path.Combine(folder, "Accounts.docx"));
                 document.SaveAs2(System.IO.Path.Combine(folder, "Accounts.pdf"), Word.WdSaveFormat.wdFormatPDF);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message, "Ошибка");
+            }
+        }
+
+        private void BtnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            var allUsers = _context.Users.Where(u => u.Role == "User").ToList().OrderBy(u => u.FIO).ToList();
+            if (allUsers.Count == 0)
+            {
+                ShowMessage("Нет клиентов для выгрузки");
+                return;
+            }
+
+            try
+            {
+                var application = new Excel.Application();
+                int oldSheetsCount = application.SheetsInNewWorkbook;
+                application.SheetsInNewWorkbook = allUsers.Count();
+                Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
+                application.SheetsInNewWorkbook = oldSheetsCount;
+
+                for (int i = 0; i < allUsers.Count(); i++)
+                {
+                    int startRowIndex = 1;
+                    Excel.Worksheet worksheet = application.Worksheets.Item[i + 1];
+                    worksheet.Name = allUsers[i].FIO.Length > 31 ? allUsers[i].FIO.Substring(0, 31) : allUsers[i].FIO;
+
+                    worksheet.Cells[1][startRowIndex] = "Дата открытия";
+                    worksheet.Cells[2][startRowIndex] = "Номер счёта";
+                    worksheet.Cells[3][startRowIndex] = "Остаток, руб.";
+                    startRowIndex++;
+
+                    var userBranches = allUsers[i].Account.OrderBy(a => a.OpenDate)
+                        .GroupBy(a => a.Branch).OrderBy(g => g.Key.Name);
+
+                    foreach (var groupBranch in userBranches)
+                    {
+                        Excel.Range headerRange = worksheet.Range[worksheet.Cells[1][startRowIndex], worksheet.Cells[3][startRowIndex]];
+                        headerRange.Merge();
+                        headerRange.Value = groupBranch.Key.Name;
+                        headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                        headerRange.Font.Italic = true;
+                        startRowIndex++;
+
+                        foreach (var account in groupBranch)
+                        {
+                            worksheet.Cells[1][startRowIndex] = account.OpenDate.ToString("dd.MM.yyyy");
+                            worksheet.Cells[2][startRowIndex] = "'" + account.Number;
+                            worksheet.Cells[3][startRowIndex] = (double)account.Balance;
+                            worksheet.Cells[3][startRowIndex].NumberFormat = "#,##0.00";
+                            startRowIndex++;
+                        }
+
+                        Excel.Range sumRange = worksheet.Range[worksheet.Cells[1][startRowIndex], worksheet.Cells[2][startRowIndex]];
+                        sumRange.Merge();
+                        sumRange.Value = "ИТОГО:";
+                        sumRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+                        worksheet.Cells[3][startRowIndex].Formula =
+                            $"=SUM(C{startRowIndex - groupBranch.Count()}:C{startRowIndex - 1})";
+                        worksheet.Cells[3][startRowIndex].NumberFormat = "#,##0.00";
+                        sumRange.Font.Bold = worksheet.Cells[3][startRowIndex].Font.Bold = true;
+                        startRowIndex++;
+                    }
+
+                    Excel.Range rangeBorders = worksheet.Range[worksheet.Cells[1][1], worksheet.Cells[3][startRowIndex - 1]];
+                    rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle =
+                    rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle =
+                    rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle =
+                    rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle =
+                    rangeBorders.Borders[Excel.XlBordersIndex.xlInsideHorizontal].LineStyle =
+                    rangeBorders.Borders[Excel.XlBordersIndex.xlInsideVertical].LineStyle =
+                        Excel.XlLineStyle.xlContinuous;
+
+                    worksheet.Columns.AutoFit();
+                }
+
+                application.DisplayAlerts = false;
+                workbook.SaveAs(System.IO.Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Accounts.xlsx"));
+                application.DisplayAlerts = true;
+                application.Visible = true;
             }
             catch (Exception ex)
             {
