@@ -23,7 +23,7 @@ namespace UP01_Prokofev_Bank.Pages
         public UserPage()
         {
             InitializeComponent();
-            ListUser.ItemsSource = Entities.GetContext().Users.ToList();
+            UpdateUsers();
         }
 
         private void ShowMessage(string text, string caption = "Сообщение")
