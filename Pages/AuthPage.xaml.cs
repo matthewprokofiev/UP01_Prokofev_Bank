@@ -22,7 +22,7 @@ namespace UP01_Prokofev_Bank.Pages
     /// </summary>
     public partial class AuthPage : Page
     {
-        private int failedAttempts = 0;
+        private static int failedAttempts = 0;
 
         public AuthPage()
         {
@@ -84,6 +84,7 @@ namespace UP01_Prokofev_Bank.Pages
             else
             {
                 ShowMessage("Пользователь успешно найден!");
+                failedAttempts = 0;
                 switch (user.Role)
                 {
                     case "User":

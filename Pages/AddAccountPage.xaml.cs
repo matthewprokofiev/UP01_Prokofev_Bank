@@ -57,6 +57,8 @@ namespace UP01_Prokofev_Bank.Pages
                 errors.AppendLine("Укажите остаток числом!");
             else if (balance < 0 || balance > 100000000)
                 errors.AppendLine("Остаток должен быть от 0 до 100 000 000!");
+            else if (balance != Math.Round(balance, 2))
+                errors.AppendLine("Не больше двух знаков после запятой!");
 
             if (DPOpenDate.SelectedDate == null)
                 errors.AppendLine("Укажите дату открытия!");

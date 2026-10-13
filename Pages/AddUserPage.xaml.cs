@@ -53,12 +53,16 @@ namespace UP01_Prokofev_Bank.Pages
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_currentUser.Login))
                 errors.AppendLine("Укажите логин!");
+            else if (!Regex.IsMatch(_currentUser.Login, "^[a-zA-Z0-9@._-]+$"))
+                errors.AppendLine("Логин может содержать только английские буквы, цифры и символы @ . _ -");
             if (string.IsNullOrWhiteSpace(_currentUser.Password))
                 errors.AppendLine("Укажите пароль!");
             if (cmbRole.SelectedItem == null)
                 errors.AppendLine("Выберите роль!");
             if (string.IsNullOrWhiteSpace(_currentUser.FIO))
                 errors.AppendLine("Укажите ФИО!");
+            else if (!Regex.IsMatch(_currentUser.FIO, "^[а-яА-ЯёЁ -]+$"))
+                errors.AppendLine("ФИО может содержать только русские буквы, пробел и дефис");
 
             if (errors.Length > 0)
             {

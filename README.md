@@ -56,7 +56,7 @@ UP01_Prokofev_Bank/
 
 ## Как запустить
 
-1. Выполнить скрипт `db/schema.sql` в SQL Server Management Studio. Скрипт создаёт базу `DB_Prokofev_Bank` и заполняет её тестовыми данными.
+1. Выполнить скрипт `db/schema.sql` в SQL Server Management Studio. Скрипт создаёт базу `DB_Prokofev_Bank` и заполняет её тестовыми данными. Скрипт рассчитан на сервер, где этой базы ещё нет. Если она уже есть, сначала удалить её.
 2. Проверить строку подключения `Entities` в `App.config`. По умолчанию используется сервер `(localdb)\MSSQLLocalDB`. Если база создана на другом сервере, заменить значение `data source`.
 3. Открыть `UP01_Prokofev_Bank.slnx` в Visual Studio и запустить приложение (F5). Пакет EntityFramework восстановится автоматически.
 

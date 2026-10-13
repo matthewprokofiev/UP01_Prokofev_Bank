@@ -247,11 +247,11 @@ namespace UP01_Prokofev_Bank.Pages
                     worksheet.Columns.AutoFit();
                 }
 
+                application.Visible = true;
                 application.DisplayAlerts = false;
                 workbook.SaveAs(System.IO.Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Accounts.xlsx"));
                 application.DisplayAlerts = true;
-                application.Visible = true;
             }
             catch (Exception ex)
             {

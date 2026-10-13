@@ -52,6 +52,17 @@ namespace UP01_Prokofev_Bank.Pages
                 return;
             }
 
+            if (!Regex.IsMatch(txtbxLog.Text, "^[a-zA-Z0-9@._-]+$"))
+            {
+                ShowMessage("Логин может содержать только английские буквы, цифры и символы @ . _ -");
+                return;
+            }
+            if (!Regex.IsMatch(txtbxFIO.Text, "^[а-яА-ЯёЁ -]+$"))
+            {
+                ShowMessage("ФИО может содержать только русские буквы, пробел и дефис");
+                return;
+            }
+
             using (var db = new Entities())
             {
                 var user = db.Users
