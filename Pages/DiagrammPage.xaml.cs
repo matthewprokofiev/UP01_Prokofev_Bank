@@ -28,11 +28,21 @@ namespace UP01_Prokofev_Bank.Pages
         public DiagrammPage()
         {
             InitializeComponent();
-            ChartAccounts.ChartAreas.Add(new ChartArea("Main"));
+            var mainArea = new ChartArea("Main");
+            mainArea.AxisY.LabelStyle.Format = "N0";
+            mainArea.AxisX.LabelAutoFitStyle = LabelAutoFitStyles.WordWrap;
+            ChartAccounts.ChartAreas.Add(mainArea);
             var currentSeries = new Series("Остатки")
             {
-                IsValueShownAsLabel = true
+                IsValueShownAsLabel = true,
+                LabelFormat = "N2",
+                LabelBackColor = System.Drawing.Color.White
             };
+            currentSeries["PieLabelStyle"] = "Outside";
+            currentSeries["PieLineColor"] = "Black";
+            currentSeries["MinimumRelativePieSize"] = "60";
+            currentSeries["BarLabelStyle"] = "Outside";
+            currentSeries["LabelValueType"] = "High";
             ChartAccounts.Series.Add(currentSeries);
             CmbUser.ItemsSource = _context.Users.Where(u => u.Role == "User").ToList();
             CmbDiagram.ItemsSource = Enum.GetValues(typeof(SeriesChartType));
@@ -55,9 +65,11 @@ namespace UP01_Prokofev_Bank.Pages
                 var branchList = _context.Branch.ToList();
                 foreach (var branch in branchList)
                 {
-                    currentSeries.Points.AddXY(branch.Name,
-                        _context.Account.ToList().Where(a => a.Users == currentUser && a.Branch == branch)
-                            .Sum(a => a.Balance));
+                    decimal sum = _context.Account.ToList().Where(a => a.Users == currentUser && a.Branch == branch)
+                        .Sum(a => a.Balance);
+                    currentSeries.Points.AddXY(branch.Name, sum);
+                    if (sum == 0)
+                        currentSeries.Points.Last()["PieLabelStyle"] = "Disabled";
                 }
             }
         }
