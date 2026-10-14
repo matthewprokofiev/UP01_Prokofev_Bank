@@ -21,9 +21,9 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Название отделения" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="Адрес" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="Телефон" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <Label Content="Название отделения" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="Адрес" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="Телефон" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
 
         <TextBox x:Name="TBBranchName" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"
                  Margin="5" MaxLength="100" ToolTip="Введите название отделения"

@@ -21,7 +21,7 @@
                 <DataGridTextColumn Header="Клиент" Binding="{Binding Users.FIO}" Width="2*"/>
                 <DataGridTextColumn Header="Отделение" Binding="{Binding Branch.Name}" Width="2*"/>
                 <DataGridTextColumn Header="Остаток" Binding="{Binding Balance, StringFormat=N2}" Width="*"/>
-                <DataGridTextColumn Header="Дата открытия" Binding="{Binding OpenDate, StringFormat=dd.MM.yyyy}" Width="*"/>
+                <DataGridTextColumn Header="Дата открытия" Binding="{Binding OpenDate, StringFormat=dd.MM.yyyy}" Width="120"/>
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

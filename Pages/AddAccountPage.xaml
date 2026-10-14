@@ -23,11 +23,11 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Номер счёта" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="Остаток, руб." Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="Дата открытия" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="Клиент" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="Отделение" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <Label Content="Номер счёта" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="Остаток, руб." Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="Дата открытия" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="Клиент" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="Отделение" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
 
         <TextBox x:Name="TBNumber" Text="{Binding Number, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"
                  Margin="5" MaxLength="20" ToolTip="Номер счёта из 20 цифр"

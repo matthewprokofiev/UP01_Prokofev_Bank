@@ -89,6 +89,7 @@
     </Style>
 
     <Style TargetType="DataGrid">
+        <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
         <Setter Property="RowBackground" Value="{DynamicResource BackgroundBrush}"/>
         <Setter Property="AlternatingRowBackground" Value="{DynamicResource PanelBrush}"/>

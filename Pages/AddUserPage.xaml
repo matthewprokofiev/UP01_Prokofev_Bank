@@ -23,11 +23,11 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Логин" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="Пароль" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="Роль" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="ФИО" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="Фото (необязательно)" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+        <Label Content="Логин" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="Пароль" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="Роль" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="ФИО" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+        <Label Content="Фото (необязательно)" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
 
         <TextBox x:Name="TBLogin" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"
                  Margin="5" MaxLength="50" ToolTip="Логин: английские буквы, цифры и символы @ . _ -"

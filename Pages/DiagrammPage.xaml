@@ -16,10 +16,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0" HorizontalAlignment="Center">
-            <TextBlock Text="Клиент:" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="Клиент:" VerticalAlignment="Center"/>
             <ComboBox x:Name="CmbUser" DisplayMemberPath="FIO" SelectionChanged="UpdateChart" Margin="5"
                       ToolTip="Выберите клиента"/>
-            <TextBlock Text="Тип диаграммы:" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="Тип диаграммы:" VerticalAlignment="Center"/>
             <ComboBox x:Name="CmbDiagram" SelectionChanged="UpdateChart" Margin="5"
                       ToolTip="Выберите тип диаграммы"/>
             <Button x:Name="BtnExcel" Content="Экспорт в Excel" Click="BtnExcel_Click"
